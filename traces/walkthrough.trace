@@ -1,0 +1,10 @@
+# Canonical Part A walkthrough. E in the operation column means evict.
+# Track the complete line containing both 0x1000 and 0x1008.
+0 R 0x1000
+0 W 0x1000 7
+1 R 0x1000
+1 W 0x1008 9
+0 R 0x1000
+0 E 0x1000
+1 E 0x1000
+2 R 0x1008

@@ -1,0 +1,10 @@
+# Cross-line load must get bytes from both lines, not read the first twice.
+0 W 0x1038 0x8877665544332211
+1 W 0x1040 0x1020304050607080
+2 R 0x1039
+2 R 0x103a
+2 R 0x103b
+2 R 0x103c
+2 R 0x103d
+2 R 0x103e
+2 R 0x103f

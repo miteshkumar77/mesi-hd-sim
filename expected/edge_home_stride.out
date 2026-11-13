@@ -1,0 +1,9 @@
+1 C0 W 0x1000 = 10 | C0=M C1=I C2=I C3=I
+2 C1 W 0x1040 = 20 | C0=I C1=M C2=I C3=I
+3 C2 W 0x1080 = 30 | C0=I C1=I C2=M C3=I
+4 C3 W 0x10c0 = 40 | C0=I C1=I C2=I C3=M
+5 C3 R 0x1000 -> 10 | C0=S C1=I C2=I C3=S
+6 C2 R 0x1040 -> 20 | C0=I C1=S C2=S C3=I
+7 C1 R 0x1080 -> 30 | C0=I C1=S C2=S C3=I
+8 C0 R 0x10c0 -> 40 | C0=S C1=I C2=I C3=S
+stats gets=4 getm=4

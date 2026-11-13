@@ -1,0 +1,10 @@
+# Repeated S->M upgrades and M->S interventions must use newest data.
+0 R 0x1000
+1 R 0x1000
+0 W 0x1000 10
+1 R 0x1000
+1 W 0x1008 20
+0 R 0x1008
+0 W 0x1038 30
+1 R 0x1038
+2 R 0x1000

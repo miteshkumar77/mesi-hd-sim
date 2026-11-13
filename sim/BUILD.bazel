@@ -1,0 +1,134 @@
+load("@rules_cc//cc:cc_binary.bzl", "cc_binary")
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+
+cc_library(
+    name = "types",
+    hdrs = ["Types.hpp"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "messages",
+    hdrs = ["Messages.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":types"],
+)
+
+cc_library(
+    name = "mesi_oracle",
+    srcs = ["MesiOracle.cpp"],
+    hdrs = ["MesiOracle.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":messages",
+        ":types",
+    ],
+)
+
+cc_library(
+    name = "home_locator",
+    hdrs = ["HomeLocator.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":types"],
+)
+
+cc_library(
+    name = "cache_controller_client",
+    hdrs = ["ICacheControllerClient.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":messages"],
+)
+
+cc_library(
+    name = "home_controller_client",
+    hdrs = ["IHomeControllerClient.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":messages"],
+)
+
+cc_library(
+    name = "request_id_allocator",
+    hdrs = ["RequestIdAllocator.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":types"],
+)
+
+cc_library(
+    name = "handle_result",
+    hdrs = ["HandleResult.hpp"],
+)
+
+cc_library(
+    name = "probe_details",
+    hdrs = ["ProbeDetails.hpp"],
+    deps = [":messages"],
+)
+
+cc_library(
+    name = "cache_controller",
+    srcs = ["CacheController.cpp"],
+    hdrs = ["CacheController.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":cache_controller_client",
+        ":handle_result",
+        ":home_locator",
+        ":mesi_oracle",
+        ":messages",
+        ":probe_details",
+        ":request_id_allocator",
+        ":types",
+    ],
+)
+
+cc_library(
+    name = "home_controller",
+    srcs = ["HomeController.cpp"],
+    hdrs = ["HomeController.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":handle_result",
+        ":home_controller_client",
+        ":mesi_oracle",
+        ":messages",
+        ":probe_details",
+        ":types",
+    ],
+)
+
+cc_library(
+    name = "message_bus",
+    srcs = ["MessageBus.cpp"],
+    hdrs = ["MessageBus.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":cache_controller",
+        ":cache_controller_client",
+        ":home_controller",
+        ":home_controller_client",
+        ":mesi_oracle",
+        ":messages",
+    ],
+)
+
+cc_library(
+    name = "system",
+    srcs = ["System.cpp"],
+    hdrs = ["System.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":cache_controller",
+        ":home_controller",
+        ":home_locator",
+        ":mesi_oracle",
+        ":message_bus",
+        ":types",
+    ],
+)
+
+cc_binary(
+    name = "mesi_hd_sim_exe",
+    srcs = ["main.cpp"],
+    data = ["//:traces"],
+    deps = [":system"],
+)

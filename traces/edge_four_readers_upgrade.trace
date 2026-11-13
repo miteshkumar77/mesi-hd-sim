@@ -1,0 +1,9 @@
+# Upgrade must invalidate all three peers, including untouched words.
+0 R 0x1000
+1 R 0x1008
+2 R 0x1010
+3 R 0x1038
+2 W 0x1018 91
+0 R 0x1018
+1 R 0x1018
+3 R 0x1018

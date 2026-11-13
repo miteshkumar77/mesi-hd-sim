@@ -1,0 +1,8 @@
+# Replacing dirty nonzero bytes with zero must propagate, not be skipped.
+0 W 0x1000 0xffffffffffffffff
+1 W 0x1000 0
+2 R 0x1000
+2 W 0x1038 0x8000000000000000
+3 W 0x1038 0
+0 R 0x1000
+0 R 0x1038

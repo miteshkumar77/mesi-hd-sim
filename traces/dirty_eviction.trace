@@ -1,0 +1,12 @@
+# Populate all eight words, evict via the line base, then refill.
+0 W 0x1000 101
+0 W 0x1008 102
+0 W 0x1010 103
+0 W 0x1018 104
+0 W 0x1020 105
+0 W 0x1028 106
+0 W 0x1030 107
+0 W 0x1038 108
+0 E 0x1000
+3 R 0x1038
+3 R 0x1000

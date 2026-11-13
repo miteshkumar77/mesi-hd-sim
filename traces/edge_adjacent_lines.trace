@@ -1,0 +1,9 @@
+# Last word and next line's first word must not alias.
+0 W 0x1038 11
+1 W 0x1040 22
+2 R 0x1038
+3 R 0x1040
+0 W 0x1038 33
+1 W 0x1040 44
+2 R 0x1038
+3 R 0x1040

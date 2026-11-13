@@ -1,0 +1,11 @@
+# Repeated local stores/loads, then a remote read and ownership change.
+0 R 0x1000
+0 W 0x1000 1
+0 W 0x1000 2
+0 R 0x1000
+0 W 0x1038 3
+0 R 0x1038
+1 R 0x1000
+1 W 0x1000 4
+0 R 0x1000
+0 R 0x1038

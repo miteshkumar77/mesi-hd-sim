@@ -1,0 +1,7 @@
+# Silent clean eviction does not notify the last sharer or promote it to E.
+# The final store therefore issues GetM even though no peer is invalidated.
+0 R 0x1000
+1 R 0x1000
+1 E 0x1000
+0 W 0x1000 99
+0 R 0x1000

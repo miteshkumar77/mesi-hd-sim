@@ -1,0 +1,8 @@
+1 C0 W 0xfffffffffffffff8 = 18446744073709551615 | C0=M C1=I C2=I C3=I
+2 C1 W 0xffffffffffffffc0 = 9223372036854775808 | C0=I C1=M C2=I C3=I
+3 C2 R 0xfffffffffffffff8 -> 18446744073709551615 | C0=I C1=S C2=S C3=I
+4 C2 R 0xffffffffffffffc0 -> 9223372036854775808 | C0=I C1=S C2=S C3=I
+5 C1 E 0xffffffffffffffc0 | C0=I C1=I C2=S C3=I
+6 C2 E 0xffffffffffffffc0 | C0=I C1=I C2=I C3=I
+7 C3 R 0xfffffffffffffff8 -> 18446744073709551615 | C0=I C1=I C2=I C3=E
+stats gets=2 getm=2

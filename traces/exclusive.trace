@@ -1,0 +1,8 @@
+# A cold read grants E. The following stores change E to M locally.
+# Even writing an unchanged value uses the store transition.
+0 R 0x1000
+0 W 0x1000 0
+0 W 0x1000 7
+0 W 0x1008 11
+0 R 0x1000
+0 R 0x1008

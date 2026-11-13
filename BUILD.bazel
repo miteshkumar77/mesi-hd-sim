@@ -1,0 +1,11 @@
+filegroup(
+    name = "traces",
+    srcs = glob(["traces/*.trace"]),
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "expected",
+    srcs = glob(["expected/*.out"]),
+    visibility = ["//visibility:public"],
+)

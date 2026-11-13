@@ -1,0 +1,7 @@
+# Dirty ownership moves twice. Abstract backing stays stale in this model.
+# Every transfer must preserve all words previously written by other cores.
+0 W 0x1000 7
+1 W 0x1008 9
+2 W 0x1010 11
+2 R 0x1000
+2 R 0x1008

@@ -1,0 +1,7 @@
+# Split store, evict both halves, then verify aligned data before split load.
+0 W 0x103f 0x0807060504030201
+0 E 0x1000
+0 E 0x1040
+1 R 0x1038
+2 R 0x1040
+3 R 0x103f

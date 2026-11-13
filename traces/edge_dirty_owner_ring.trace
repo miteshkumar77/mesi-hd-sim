@@ -1,0 +1,9 @@
+# Transfer latest full line through every core, then back to original owner.
+0 W 0x1000 11
+1 W 0x1008 22
+2 W 0x1010 33
+3 W 0x1018 44
+0 W 0x1020 55
+1 R 0x1000
+2 R 0x1018
+3 R 0x1020

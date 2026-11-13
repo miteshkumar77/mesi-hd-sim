@@ -1,0 +1,9 @@
+1 C0 W 0x0 = 1234 | C0=M C1=I C2=I C3=I
+2 C1 W 0x38 = 5678 | C0=I C1=M C2=I C3=I
+3 C2 R 0x0 -> 1234 | C0=I C1=S C2=S C3=I
+4 C2 R 0x38 -> 5678 | C0=I C1=S C2=S C3=I
+5 C2 E 0x0 | C0=I C1=S C2=I C3=I
+6 C1 E 0x0 | C0=I C1=I C2=I C3=I
+7 C3 R 0x0 -> 1234 | C0=I C1=I C2=I C3=E
+8 C3 R 0x38 -> 5678 | C0=I C1=I C2=I C3=E
+stats gets=2 getm=2

@@ -1,0 +1,9 @@
+# Little-endian byte overlap: writes at offsets 1 and 7 overlap a word boundary.
+0 W 0x1001 0x0807060504030201
+0 R 0x1000
+0 R 0x1001
+1 R 0x1007
+1 W 0x1007 0x8877665544332211
+2 R 0x1001
+2 R 0x1007
+3 R 0x1008

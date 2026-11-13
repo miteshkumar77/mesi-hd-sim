@@ -1,0 +1,9 @@
+# Exercise consecutive line numbers and repeated home strides.
+0 W 0x1000 10
+1 W 0x1040 20
+2 W 0x1080 30
+3 W 0x10c0 40
+3 R 0x1000
+2 R 0x1040
+1 R 0x1080
+0 R 0x10c0

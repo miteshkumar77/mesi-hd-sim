@@ -1,0 +1,10 @@
+# Store spans two cache lines; dirty ownership differs between the halves.
+0 W 0x1038 0x1111111111111111
+1 W 0x1040 0x2222222222222222
+2 W 0x103d 0x0807060504030201
+3 R 0x1038
+3 R 0x1040
+2 E 0x1000
+2 E 0x1040
+0 R 0x1038
+0 R 0x1040

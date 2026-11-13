@@ -1,0 +1,8 @@
+# Highest aligned word, full 64-bit values, no signed narrowing.
+0 W 0xfffffffffffffff8 0xffffffffffffffff
+1 W 0xffffffffffffffc0 0x8000000000000000
+2 R 0xfffffffffffffff8
+2 R 0xffffffffffffffc0
+1 E 0xffffffffffffffc0
+2 E 0xffffffffffffffc0
+3 R 0xfffffffffffffff8

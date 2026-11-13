@@ -1,0 +1,9 @@
+# Address zero must work even when used as a sentinel internally.
+0 W 0 1234
+1 W 56 5678
+2 R 0
+2 R 56
+2 E 0
+1 E 0
+3 R 0
+3 R 56

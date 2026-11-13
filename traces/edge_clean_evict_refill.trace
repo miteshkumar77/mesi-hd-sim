@@ -1,0 +1,8 @@
+# No dirty data involved; evict E and S copies, then refill cold.
+0 R 0x1000
+0 E 0x1000
+1 R 0x1000
+2 R 0x1000
+1 E 0x1000
+2 E 0x1000
+3 R 0x1000

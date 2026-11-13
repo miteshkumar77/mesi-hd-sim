@@ -1,0 +1,9 @@
+# Cores exchange ownership on two independent lines; no metadata mixing.
+0 W 0x1000 10
+1 W 0x1040 20
+0 W 0x1048 30
+1 W 0x1008 40
+2 R 0x1000
+2 R 0x1008
+3 R 0x1040
+3 R 0x1048

@@ -1,0 +1,5 @@
+# Remote store revokes clean E; old owner must refill latest bytes.
+0 R 0x1000
+3 W 0x1038 73
+0 R 0x1038
+0 R 0x1000

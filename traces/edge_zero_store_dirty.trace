@@ -1,0 +1,7 @@
+# Same-value stores still acquire dirty ownership; data survives eviction.
+0 R 0x1000
+0 W 0x1000 0
+1 W 0x1038 0
+1 E 0x1000
+2 R 0x1000
+2 R 0x1038
