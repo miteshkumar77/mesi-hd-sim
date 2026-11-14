@@ -1,0 +1,11 @@
+# Sole reader gets E; a later store upgrades E->M silently
+#
+# A read miss with no other sharers is granted Exclusive. The following store hits in E and
+# moves to M without any bus traffic (no GetM is sent).
+#
+# Replay: mesi_hd_interactive_sim_exe -o traffic.txt -c 4 -r <this file>
+# tick action
+0 0 R 0x40
+2 D 1
+4 D 2
+6 0 W 0x40 0x11

@@ -4,7 +4,7 @@
 #include "HomeController.hpp"
 #include "HomeLocator.hpp"
 #include "MesiOracle.hpp"
-#include "MessageBus.hpp"
+#include "FifoMessageBus.hpp"
 #include "Types.hpp"
 
 #include <memory>
@@ -17,7 +17,7 @@ namespace mesi {
 class System {
 public:
 
-    explicit System(const std::string& oracleOutputPath, std::size_t cores = 4, std::size_t homes=2);
+    explicit System(const std::string& oracleOutputPath, std::size_t cores = 4, std::size_t homes=1);
     ~System();
 
     Value load(Core core, Address address);
@@ -40,7 +40,7 @@ private:
     Stats stats_{};
 
     std::unique_ptr<MesiOracle>        oracle_;
-    std::unique_ptr<MessageBus>        messageBus_;
+    std::unique_ptr<FifoMessageBus>    messageBus_;
 
     std::vector<CacheController>       controllers_;
     std::vector<HomeController>        homes_;

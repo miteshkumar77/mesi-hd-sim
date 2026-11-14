@@ -97,9 +97,9 @@ cc_library(
 )
 
 cc_library(
-    name = "message_bus",
-    srcs = ["MessageBus.cpp"],
-    hdrs = ["MessageBus.hpp"],
+    name = "fifo_message_bus",
+    srcs = ["FifoMessageBus.cpp"],
+    hdrs = ["FifoMessageBus.hpp"],
     visibility = ["//visibility:public"],
     deps = [
         ":cache_controller",
@@ -112,17 +112,66 @@ cc_library(
 )
 
 cc_library(
+    name = "realistic_message_bus",
+    srcs = ["RealisticMessageBus.cpp"],
+    hdrs = ["RealisticMessageBus.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":cache_controller",
+        ":cache_controller_client",
+        ":home_controller",
+        ":home_controller_client",
+        ":mesi_oracle",
+        ":messages",
+    ],
+)
+
+cc_library(
+    name = "interactive_message_bus",
+    srcs = ["InteractiveMessageBus.cpp"],
+    hdrs = ["InteractiveMessageBus.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":cache_controller",
+        ":cache_controller_client",
+        ":fifo_message_bus",
+        ":home_controller",
+        ":home_controller_client",
+        ":mesi_oracle",
+        ":messages",
+        ":realistic_message_bus",
+        ":types",
+    ],
+)
+
+cc_library(
     name = "system",
-    srcs = ["System.cpp"],
-    hdrs = ["System.hpp"],
+    srcs = ["System.cpp",
+            "AsyncSystem.cpp",],
+    hdrs = ["System.hpp",
+            "AsyncSystem.hpp",],
     visibility = ["//visibility:public"],
     deps = [
         ":cache_controller",
         ":home_controller",
         ":home_locator",
         ":mesi_oracle",
-        ":message_bus",
+        ":fifo_message_bus",
+        ":interactive_message_bus",
+        ":realistic_message_bus",
         ":types",
+    ],
+)
+
+cc_binary(
+    name = "mesi_hd_interactive_sim_exe",
+    srcs = ["interactive_main.cpp"],
+    deps = [
+        ":system",
+        "@boost.program_options",
+        "@ftxui//:component",
+        "@ftxui//:dom",
+        "@ftxui//:screen",
     ],
 )
 

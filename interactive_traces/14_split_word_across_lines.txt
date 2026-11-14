@@ -1,0 +1,22 @@
+# Unaligned word that straddles two cache lines
+#
+# C0 stores 8 bytes at 0x7f: one byte lands in line 0x40 and seven in line 0x80, so the store
+# needs write permission on both lines. C1 then loads the same unaligned word and must
+# reassemble it from both lines.
+#
+# Replay: mesi_hd_interactive_sim_exe -o traffic.txt -c 4 -r <this file>
+# tick action
+0 0 W 0x7f 0x1122334455667788
+2 D 1
+4 D 2
+6 D 3
+8 D 4
+10 1 R 0x7f
+12 D 5
+14 D 6
+16 D 7
+18 D 8
+20 D 9
+22 D 10
+24 D 11
+26 D 12

@@ -1,0 +1,16 @@
+# ProbeI arrives before the Grant it targets
+#
+# C0's GetM is granted, but before the Grant reaches C0, C1's GetM makes the home send C0 a
+# ProbeI. The probe is delivered first; C0 defers it until the Grant arrives, completes its
+# store, then gives the line (with data) to C1. Both stores survive.
+#
+# Replay: mesi_hd_interactive_sim_exe -o traffic.txt -c 4 -r <this file>
+# tick action
+0 0 W 0x40 0x7
+2 D 1
+4 1 W 0x48 0x8
+6 D 3
+8 D 4
+10 D 2
+14 D 5
+16 D 6

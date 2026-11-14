@@ -1,0 +1,15 @@
+# Clean E copy downgraded to S by a remote read
+#
+# C0 holds the line in E. C1's GetS makes the home probe C0 (ProbeS); C0 answers without data
+# because the line is clean, and both end in S.
+#
+# Replay: mesi_hd_interactive_sim_exe -o traffic.txt -c 4 -r <this file>
+# tick action
+0 0 R 0x40
+2 D 1
+4 D 2
+6 1 R 0x40
+8 D 3
+10 D 4
+12 D 5
+14 D 6

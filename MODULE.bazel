@@ -1,3 +1,5 @@
 module(name = "mesi_hd_sim", version = "0.1.0")
 
 bazel_dep(name = "rules_cc", version = "0.2.17")
+bazel_dep(name = "boost.program_options", version = "1.89.0.bcr.2")
+bazel_dep(name = "ftxui", version = "6.1.9")

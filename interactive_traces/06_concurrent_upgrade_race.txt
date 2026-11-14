@@ -1,0 +1,27 @@
+# Two sharers race to upgrade the same line
+#
+# C0 and C1 both hold the line in S and store to it in the same cycle. C1's GetM reaches the
+# home first, so C0 is invalidated while its own upgrade is still outstanding (the classic
+# SM_AD + Inv race). C0's request is then served as a full miss, taking ownership from C1.
+# Neither store is lost.
+#
+# Replay: mesi_hd_interactive_sim_exe -o traffic.txt -c 4 -r <this file>
+# tick action
+0 0 R 0x40
+2 D 1
+4 D 2
+6 1 R 0x40
+8 D 3
+10 D 4
+12 D 5
+14 D 6
+16 0 W 0x40 0xa0
+16 1 W 0x48 0xb1
+18 D 8
+20 D 7
+24 D 9
+26 D 10
+28 D 11
+30 D 12
+32 D 13
+34 D 14

@@ -1,0 +1,15 @@
+# Dirty M copy downgraded to S with write-back
+#
+# C0 writes the line (M). C1 reads it: the ProbeAck from C0 carries the dirty data, the home
+# forwards it in C1's Grant, and C1 observes C0's value. Both end in S.
+#
+# Replay: mesi_hd_interactive_sim_exe -o traffic.txt -c 4 -r <this file>
+# tick action
+0 0 W 0x40 0xaaaa
+2 D 1
+4 D 2
+6 1 R 0x40
+8 D 3
+10 D 4
+12 D 5
+14 D 6

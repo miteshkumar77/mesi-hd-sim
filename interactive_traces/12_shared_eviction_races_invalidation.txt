@@ -1,0 +1,24 @@
+# Clean S eviction races an invalidation
+#
+# C0 and C1 share the line. C0 evicts it while C1 upgrades. C1's GetM is processed first, so C0
+# is invalidated by ProbeI before its EvictReq reaches the home; the stale EvictReq is then
+# simply acknowledged (the PutS / Inv race).
+#
+# Replay: mesi_hd_interactive_sim_exe -o traffic.txt -c 4 -r <this file>
+# tick action
+0 0 R 0x40
+2 D 1
+4 D 2
+6 1 R 0x40
+8 D 3
+10 D 4
+12 D 5
+14 D 6
+16 0 E 0x40
+16 1 W 0x40 0x30
+18 D 8
+20 D 9
+22 D 7
+26 D 10
+28 D 11
+30 D 12

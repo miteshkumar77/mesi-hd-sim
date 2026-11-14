@@ -12,12 +12,12 @@
 
 namespace mesi {
 
-class MessageBus : public ICacheControllerClient, public IHomeControllerClient
+class FifoMessageBus : public ICacheControllerClient, public IHomeControllerClient
 {
 public:
     void step();
 
-    explicit MessageBus(
+    explicit FifoMessageBus(
         std::vector<HomeController*> homesById,
         std::vector<CacheController*> cachesById,
         MesiOracle& oracle)

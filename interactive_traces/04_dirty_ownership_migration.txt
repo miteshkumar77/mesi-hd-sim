@@ -1,0 +1,20 @@
+# Ownership of a dirty line migrates M -> M
+#
+# C0 writes word 0, then C1 writes word 1 of the same line. C0 is invalidated and its dirty
+# data travels to C1 via the home. C0 then re-reads word 0 and still sees its own value.
+#
+# Replay: mesi_hd_interactive_sim_exe -o traffic.txt -c 4 -r <this file>
+# tick action
+0 0 W 0x40 0x1111
+2 D 1
+4 D 2
+6 1 W 0x48 0x2222
+8 D 3
+10 D 4
+12 D 5
+14 D 6
+16 0 R 0x40
+18 D 7
+20 D 8
+22 D 9
+24 D 10

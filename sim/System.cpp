@@ -17,7 +17,7 @@ System::System(const std::string& oracleOutputPath, std::size_t cores, std::size
     oracle_ = std::make_unique<MesiOracle>(oracleOutputPath);
 
     controllers_.reserve(cores);
-    homes_.reserve(cores);
+    homes_.reserve(homes);
 
     for (Core c = 0; c < cores; ++c) {
         controllers_.emplace_back(c, RequestIdAllocator{c, cores}, homeLocator_, *oracle_);
@@ -39,7 +39,7 @@ System::System(const std::string& oracleOutputPath, std::size_t cores, std::size
         cacheSenders.push_back(&cache);
     }
 
-    messageBus_ = std::make_unique<MessageBus>(
+    messageBus_ = std::make_unique<FifoMessageBus>(
         std::move(homeSenders), std::move(cacheSenders), *oracle_);
 
     for (auto& cache : controllers_) {

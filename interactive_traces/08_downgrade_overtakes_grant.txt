@@ -1,0 +1,16 @@
+# ProbeS arrives before the Grant it targets
+#
+# Like 07, but the second request is a read. C0 receives the ProbeS before its write Grant,
+# defers it, finishes its store, and then downgrades to S with a write-back so C1 reads the new
+# value.
+#
+# Replay: mesi_hd_interactive_sim_exe -o traffic.txt -c 4 -r <this file>
+# tick action
+0 0 W 0x40 0x77
+2 D 1
+4 1 R 0x40
+6 D 3
+8 D 4
+10 D 2
+14 D 5
+16 D 6

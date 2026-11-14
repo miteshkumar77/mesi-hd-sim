@@ -1,0 +1,18 @@
+# Dirty eviction races a remote GetM (eviction wins)
+#
+# Same race as 10, but C0's EvictReq reaches the home first. The home collects C0's dirty data
+# for the eviction, acknowledges it, and then serves C1's GetM from memory.
+#
+# Replay: mesi_hd_interactive_sim_exe -o traffic.txt -c 4 -r <this file>
+# tick action
+0 0 W 0x40 0x10
+2 D 1
+4 D 2
+6 0 E 0x40
+6 1 W 0x48 0x20
+8 D 3
+10 D 4
+14 D 5
+16 D 6
+18 D 7
+20 D 8

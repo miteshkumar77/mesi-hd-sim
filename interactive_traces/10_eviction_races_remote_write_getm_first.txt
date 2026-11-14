@@ -1,0 +1,19 @@
+# Dirty eviction races a remote GetM (GetM wins)
+#
+# C0 evicts its M line while C1 stores to it. C1's GetM reaches the home before C0's EvictReq:
+# the home invalidates C0 on C1's behalf, so when the EvictReq arrives its grant is already
+# gone and the home just acknowledges it. C0's data is not lost.
+#
+# Replay: mesi_hd_interactive_sim_exe -o traffic.txt -c 4 -r <this file>
+# tick action
+0 0 W 0x40 0x10
+2 D 1
+4 D 2
+6 0 E 0x40
+6 1 W 0x48 0x20
+8 D 4
+10 D 3
+14 D 5
+16 D 6
+18 D 7
+20 D 8

@@ -17,7 +17,7 @@ public:
     Home locateHomeId(Address byteAddress)
     {
         const Address line{line_base(byteAddress)};
-        return line % homes_;
+        return (line / line_bytes) % homes_;
     }
 
 private:

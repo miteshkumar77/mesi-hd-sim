@@ -1,0 +1,18 @@
+# Evicting a dirty line writes it back to the home
+#
+# C0 writes then evicts the line. The home probes C0 for the data before acknowledging the
+# eviction; a later read by C1 is served from home memory with C0's value, and C1 gets E.
+#
+# Replay: mesi_hd_interactive_sim_exe -o traffic.txt -c 4 -r <this file>
+# tick action
+0 0 W 0x40 0xe
+2 D 1
+4 D 2
+6 0 E 0x40
+8 D 3
+10 D 4
+12 D 5
+14 D 6
+16 1 R 0x40
+18 D 7
+20 D 8

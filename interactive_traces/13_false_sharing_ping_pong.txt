@@ -1,0 +1,35 @@
+# False sharing: two cores write different words of one line
+#
+# C0 and C1 alternately write their own word of the same line. The line ping-pongs between them
+# in M, and every value written survives each transfer.
+#
+# Replay: mesi_hd_interactive_sim_exe -o traffic.txt -c 4 -r <this file>
+# tick action
+0 0 W 0x40 0x100
+2 D 1
+4 D 2
+6 1 W 0x48 0x200
+8 D 3
+10 D 4
+12 D 5
+14 D 6
+16 0 W 0x40 0x101
+18 D 7
+20 D 8
+22 D 9
+24 D 10
+26 1 W 0x48 0x201
+28 D 11
+30 D 12
+32 D 13
+34 D 14
+36 0 W 0x40 0x102
+38 D 15
+40 D 16
+42 D 17
+44 D 18
+46 1 W 0x48 0x202
+48 D 19
+50 D 20
+52 D 21
+54 D 22

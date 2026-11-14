@@ -1,0 +1,25 @@
+# S -> M upgrade invalidates every other sharer
+#
+# Three cores share the line. C0 stores: the home sends ProbeI to C1 and C2 (not to C0), and
+# only after both acks does C0's GetM get its write grant.
+#
+# Replay: mesi_hd_interactive_sim_exe -o traffic.txt -c 4 -r <this file>
+# tick action
+0 0 R 0x40
+2 D 1
+4 D 2
+6 1 R 0x40
+8 D 3
+10 D 4
+12 D 5
+14 D 6
+16 2 R 0x40
+18 D 7
+20 D 8
+22 0 W 0x40 0x5
+24 D 9
+26 D 10
+28 D 11
+30 D 12
+32 D 13
+34 D 14
