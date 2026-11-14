@@ -38,6 +38,15 @@ The cases are standard MESI transitions and races, as described in the
 [MESI protocol article](https://en.wikipedia.org/wiki/MESI_protocol) and in Nagarajan, Sorin, Hill & Wood,
 *A Primer on Memory Consistency and Cache Coherence* (2nd ed.), chapters 7–8.
 
+![TUI replaying 06_concurrent_upgrade_race](interactive_traces/06_concurrent_upgrade_race.gif)
+
+*Replay of `06_concurrent_upgrade_race`: the concurrent-upgrade race (an invalidation reaching a core
+whose own upgrade is still in flight). C0 and C1 both hold `0x40` in S and store to it in the same
+cycle. C1's GetM (#8) is delivered to the home before C0's (#7), so the home invalidates C0 (ProbeI #9)
+while C0's upgrade is still outstanding. C1 is granted M and writes word 1. C0's request is then served
+as a full miss: C1 is invalidated and writes its data back, and C0 ends in M holding both `0xa0`
+(word 0) and `0xb1` (word 1), so neither store is lost.*
+
 | File | Case |
 |------|------|
 | `01_exclusive_then_silent_upgrade` | Sole reader is granted E; a store upgrades E→M with no bus traffic |
