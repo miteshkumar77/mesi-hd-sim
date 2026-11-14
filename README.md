@@ -1,10 +1,11 @@
 # MESI cache coherency sim
 Implements MESI cache coherency simulation with the following assumptions:
-1. Home/Directory based approach, CPUs can only program their private cache through exchanging messages with the Home/Directory node.
-2. Point-to-point messaging between CPU and Home Nodes can be re-ordered.
+1. Home/Directory based approach, cores can only program their private cache through exchanging messages with the Home/Directory node.
+2. Point-to-point messaging between cores and Home Nodes can be re-ordered.
 3. Little Endian integer memory layout
-4. CPUs can invoke load <byte_addr>, store <byte_addr> <uint64_t>, evict <line_addr>
-5. A processor can only have one active command at a time. I.e. `std::memory_order_seq_cst`.
+4. cores can invoke load <byte_addr>, store <byte_addr> <uint64_t>, evict <line_addr>
+5. A core can only have one active command at a time and they are executed FIFO for the core . I.e. `std::memory_order_seq_cst`.
+    - consider the case where core 1 writes Y=0->1, reads X; core 2 writes X=0->1, reads Y. In our simulation, its impossible for both X and Y to read as 0. If core 1 reads X = 0, its write Y=0->1 must have happened before core 2 reads Y. And vice versa. 
 6. Load/Store on unaligned addresses is natively supported. Load/Store on a word that spans two cache lines is non-atomic (like x86)
 7. Cache is unbounded, so we do not simulate an eviction policy, though we've made it trivial to add by implementing evict.
 8. L1/L2 are treated as one unified cache, no promotion/demotion.
